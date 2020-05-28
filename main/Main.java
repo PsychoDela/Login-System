@@ -146,6 +146,7 @@ public class Main
 		{
 			UserDAOImplementation user = new UserDAOImplementation();
 			user.updateUser(name, surname, nowLoggedIn);
+			start();
 		}
 		
 		catch (Exception e)
@@ -157,7 +158,39 @@ public class Main
 	
 	public static void deleteAcc()
 	{
+		int choice;
 		
+		System.out.println("Are you sure you want to delete your account? This action is irreversible.");
+		System.out.println("1) YES\n2) NO");
+		
+		choice = sc.nextInt();
+		
+		switch (choice)
+		{
+			case 1:
+				deleteFinal();
+				break;
+			
+			default:
+				start();
+				break;
+		}
+	}
+	
+	public static void deleteFinal()
+	{
+		try
+		{
+			UserDAOImplementation user = new UserDAOImplementation();
+			user.deleteUser(nowLoggedIn);
+			start();
+		}
+		
+		catch (Exception e)
+		{
+			System.out.println(e);
+			start();
+		}
 	}
 	
 	public static void errorMessage()

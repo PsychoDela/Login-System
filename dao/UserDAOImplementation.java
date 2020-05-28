@@ -66,4 +66,16 @@ public class UserDAOImplementation
 			System.out.println("User updated.");
 		}
 	}
+	
+	public void deleteUser(String username) throws SQLException
+	{
+		String query = "DELETE FROM useri WHERE username = '" + username + "'";
+		
+		try (PreparedStatement statement = connection.prepareStatement(query)) 
+		{
+			statement.executeUpdate();
+
+			System.out.println("User deleted.");
+		}
+	}
 }
