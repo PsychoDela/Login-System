@@ -3,6 +3,7 @@ package main;
 import java.util.Scanner;
 
 import dao.UserDAOImplementation;
+import dto.UserLogin;
 import dto.UserRegister;
 
 public class Main 
@@ -48,6 +49,19 @@ public class Main
 		
 		System.out.println("Enter password: ");
 		password = enterText();
+		
+		UserLogin user = new UserLogin(username, password);
+		
+		if (user.isValidationPassed() == true)
+		{
+			System.out.println("Successfully logged in!");
+			options();
+		}
+		
+		else
+		{
+			errorMessage();
+		}
 	}
 	
 	public static void register()
@@ -88,6 +102,31 @@ public class Main
 		else
 		{
 			errorMessage();
+		}
+	}
+	
+	public static void options()
+	{
+		int choice;
+		
+		System.out.println("~~~Options~~~");
+		System.out.println("1) Change name\n2) Delete account");
+		
+		choice = sc.nextInt();
+		
+		switch (choice)
+		{
+			case 1:
+				changeName();
+				break;
+				
+			case 2:
+				deleteAcc();
+				break;
+				
+			default:
+				errorMessage();
+				break;
 		}
 	}
 	
