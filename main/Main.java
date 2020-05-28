@@ -2,6 +2,7 @@ package main;
 
 import java.util.Scanner;
 
+import dao.UserDAOImplementation;
 import dto.UserRegister;
 
 public class Main 
@@ -66,6 +67,28 @@ public class Main
 		password = enterText();
 		
 		UserRegister user = new UserRegister(name, surname, username, password);
+		
+		if (user.isValidationPassed() == true)
+		{
+			try
+			{
+				UserDAOImplementation addData = new UserDAOImplementation();
+				addData.addStudent(name, surname, username, password);
+				System.out.println("Registered successfully!");
+				start();
+			}
+			
+			catch (Exception e)
+			{
+				System.out.println(e);
+				errorMessage();
+			}
+		}
+		
+		else
+		{
+			errorMessage();
+		}
 	}
 	
 	public static void errorMessage()

@@ -19,6 +19,15 @@ public class UserRegister
 		setPassword(password);
 		setValidationPassed(true);
 	}
+	
+	public UserRegister(String name, String surname, String username, String password, int num) 
+	{
+		this.name = name;
+		this.surname = surname;
+		this.username = username;
+		this.password = password;
+		setValidationPassed(true);
+	}
 
 	public String getName() 
 	{
@@ -47,7 +56,7 @@ public class UserRegister
 	
 	public void setUsername(String username) 
 	{
-		if (Validation.userRegisterValidation(username) == true)
+		if (Validation.usernameRegisterValidation(username) == true)
 		{
 			this.username = username;
 		}
@@ -65,7 +74,15 @@ public class UserRegister
 	
 	public void setPassword(String password) 
 	{
-		this.password = password;
+		if (Validation.passwordLengthValidation(password) == true)
+		{
+			this.password = password;
+		}
+		
+		else
+		{
+			Main.errorMessage();
+		}
 	}
 	
 	public boolean isValidationPassed() 

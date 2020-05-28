@@ -5,7 +5,7 @@ import main.Main;
 
 public class Validation 
 {
-	public static boolean userRegisterValidation(String username)
+	public static boolean usernameRegisterValidation(String username)
 	{
 		UserDAOImplementation user = new UserDAOImplementation();
 		
@@ -27,5 +27,19 @@ public class Validation
 		}
 	
 		return true;
+	}
+	
+	public static boolean passwordLengthValidation(String password)
+	{
+		if (password.length() < 6)
+		{
+			return false;
+		}
+		
+		else
+		{
+			return true;
+		}
+		
 	}
 }
