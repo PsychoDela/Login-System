@@ -35,7 +35,7 @@ public class UserDAOImplementation
 		return users;
 	}
 	
-	public void addStudent(String name, String surname, String username, String password) throws SQLException 
+	public void addUser(String name, String surname, String username, String password) throws SQLException 
 	{
 		String query = "INSERT INTO useri VALUES (?, ?, ?, ?)";
 
@@ -49,6 +49,21 @@ public class UserDAOImplementation
 			statement.executeUpdate();
 
 			System.out.println("User added to the database.");
+		}
+	}
+	
+	public void updateUser(String name, String surname, String username) throws SQLException
+	{
+		String query = "UPDATE useri SET Ime = ?, Prezime = ? WHERE username = '" + username + "'";
+		
+		try (PreparedStatement statement = connection.prepareStatement(query)) 
+		{
+			statement.setString(1, name);
+			statement.setString(2, surname);
+
+			statement.executeUpdate();
+
+			System.out.println("User updated.");
 		}
 	}
 }

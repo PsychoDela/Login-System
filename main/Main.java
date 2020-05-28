@@ -9,6 +9,7 @@ import dto.UserRegister;
 public class Main 
 {
 	static Scanner sc = new Scanner (System.in);
+	static String nowLoggedIn = "";
 	
 	public static void main(String[] args) 
 	{
@@ -55,6 +56,7 @@ public class Main
 		if (user.isValidationPassed() == true)
 		{
 			System.out.println("Successfully logged in!");
+			nowLoggedIn = username;
 			options();
 		}
 		
@@ -87,7 +89,7 @@ public class Main
 			try
 			{
 				UserDAOImplementation addData = new UserDAOImplementation();
-				addData.addStudent(name, surname, username, password);
+				addData.addUser(name, surname, username, password);
 				System.out.println("Registered successfully!");
 				start();
 			}
@@ -128,6 +130,34 @@ public class Main
 				errorMessage();
 				break;
 		}
+	}
+	
+	public static void changeName()
+	{
+		String name, surname;
+		
+		System.out.println("Enter new name: ");
+		name = enterText();
+		
+		System.out.println("Enter new surname: ");
+		surname = enterText();
+			
+		try
+		{
+			UserDAOImplementation user = new UserDAOImplementation();
+			user.updateUser(name, surname, nowLoggedIn);
+		}
+		
+		catch (Exception e)
+		{
+			System.out.println(e);
+			start();
+		}
+	}
+	
+	public static void deleteAcc()
+	{
+		
 	}
 	
 	public static void errorMessage()
