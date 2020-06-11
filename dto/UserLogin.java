@@ -9,8 +9,6 @@ public class UserLogin
 	private String password;
 	private boolean validationPassed;
 	
-	
-	
 	public UserLogin(String username, String password) 
 	{
 		setUsername(username);
@@ -62,6 +60,5 @@ public class UserLogin
 	public void setValidationPassed(boolean validationPassed) 
 	{
 		this.validationPassed = validationPassed;
-	}
-	
+	}	
 }
